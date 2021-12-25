@@ -1,0 +1,55 @@
+
+font
+{
+  font-size: 30px;
+  font-weight: bold;
+  color: blue;
+}
+
+.font
+{
+  font-size: 30px;
+  font-weight: bold;
+  color: cornflowerblue;
+}
+
+.mdc-top-app-bar{
+  margin: 0;
+  background: cornflowerblue;
+}
+
+
+.mdc-button{
+  color: royalblue;
+  --mdc-theme-primary: royalblue;
+  --mdc-theme-on-primary: #442C2E;
+}
+
+.page-footer{
+  background:dimgray;
+  color: dimgray;
+  position: fixed;
+  left: 0;
+  bottom: 0;
+  clear: both;
+  width: 100%;
+}
+
+
+
+.margin5{
+  margin: 5px;
+}
+
+.mdc-button__ripple{
+  --mdc-theme-primary: royalblue;
+}
+
+.mdc-button--raised:not(:disabled), .mdc-button--unelevated:not(:disabled) {
+  background-color: royalblue;
+}
+
+.inline{
+  display: inline;
+}
+body {margin:0;padding:0}
