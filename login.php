@@ -5,7 +5,7 @@ include('header.php');?>
 <header class="mdc-top-app-bar">
     <div class="mdc-top-app-bar__row">
         <section class="mdc-top-app-bar__section mdc-top-app-bar__section--align-start">
-            <button class="material-icons mdc-top-app-bar__action-item mdc-icon-button"  onclick=location.href="index.php">arrow_back</button>
+            <button class="material-icons mdc-top-app-bar__action-item mdc-icon-button"  onclick='history.back()'>arrow_back</button>
             <span class="mdc-top-app-bar__title">用戶登入</span>
         </section>
         <section class="mdc-top-app-bar__section mdc-top-app-bar__section--align-end" role="toolbar">
@@ -47,8 +47,8 @@ include('header.php');?>
     </div>
 
     <a class="waves-effect waves-light btn-small margin5" onclick=location.href="courseList.php">用戶登入</a>
-    <a class="waves-effect waves-light btn-small margin5" onclick="location.href='mipsEmulator.html';">忘記密碼</a>
-    <a class="waves-effect waves-light btn-small margin5" onclick="location.href='mipsEmulator.html';">註冊</a>
+<!--    <a class="waves-effect waves-light btn-small margin5" onclick="location.href='mipsEmulator.html';">忘記密碼</a>-->
+    <a class="waves-effect waves-light btn-small margin5" onclick="location.href='register.php';">註冊</a>
 </center>
 
 <?php
