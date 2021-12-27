@@ -51,9 +51,9 @@ include_once "db_conn.php"; ?>
             ?>
         </table>
         <br>
-        <input typut type='button' onclick='history.back()' value='Go back'></input>
 
-        <a class="waves-effect waves-light btn-small margin5" onclick='history.back()'>所有課程</a>
+
+        <a class="waves-effect waves-light btn-small margin5" onclick=location.href="index.php">回到標題</a>
 
 </center>
 

@@ -45,7 +45,8 @@ include('header.php');?>
                     <label for="textarea1">再次確認密碼</label>
                 </div>
             </div>
-            <input class="waves-effect waves-light btn-small margin5" type="submit"  name="submit">
+            <input class=" btn waves-effect waves-light btn-small margin5" type="submit"  name="submit" value="註冊">
+                    
         </form>
     </div>
 
