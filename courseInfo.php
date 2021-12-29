@@ -40,7 +40,7 @@
     <br/>
     <br/>
     <h3> 課程資訊</h3>
-    <table border='1' style='width:70%'>
+    <table border='1' style='width:70%' >
         <tr>
             <th>課號</th>
             <th>課程名稱</th>
