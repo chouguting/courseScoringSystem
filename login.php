@@ -1,6 +1,5 @@
 <?php
-include('header.php');?>
-<?php
+include('header.php');
 include_once "db_conn.php";
 header("Content-Type: text/html; charset=utf-8");
 session_start();
@@ -17,6 +16,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST") {
         $_SESSION["loggedin"] = true;
         $_SESSION["user_id"] = $result[0]['user_id'];
         $_SESSION["username"] = $username;
+        $_SESSION["user_level"] = $result[0]['user_level'];
     }
     else{
         echo "<script>alert('帳號或密碼錯誤')</script>";
@@ -27,7 +27,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST") {
 <header class="mdc-top-app-bar">
     <div class="mdc-top-app-bar__row">
         <section class="mdc-top-app-bar__section mdc-top-app-bar__section--align-start">
-            <button class="material-icons mdc-top-app-bar__action-item mdc-icon-button"  onclick='history.back()'>arrow_back</button>
+            <button class="material-icons mdc-top-app-bar__action-item mdc-icon-button"  onclick="location.href='index.php';">arrow_back</button>
             <span class="mdc-top-app-bar__title">用戶登入</span>
         </section>
         <section class="mdc-top-app-bar__section mdc-top-app-bar__section--align-end" role="toolbar">
