@@ -1,6 +1,7 @@
 
 <?php
-include('header.php');?>
+include('header.php');
+?>
 
 <header class="mdc-top-app-bar">
     <div class="mdc-top-app-bar__row">

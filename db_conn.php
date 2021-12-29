@@ -1,6 +1,6 @@
 <?php
     $user='root';
-    $password='20010122';
+    $password='nunu1215';
 
     try{
         $db = new PDO('mysql:host=localhost;dbname=coursescoringsystem;charset=utf8',$user,$password);
