@@ -21,17 +21,20 @@ include_once "db_conn.php"; ?>
     <br/>
 
 
-    <form action="inform.php" method="get">
-        <h3> 查詢資料</h3>
 
+    <h3> 查詢資料</h3>
+    <form id="infoForm" action="courseInfo.php" method="post">
         <table border='1' style='width:70%'>
             <tr>
-                <th>id</th>
-                <th>course name</th>
-                <th>department</th>
-                <th>time</th>
-                <th>location</th>
+                <th>課程名稱</th>
+                <th>學系</th>
+                <th>時間</th>
+                <th>詳細資料</th>
+                <?php
+                
+                ?>
             </tr>
+
             <?php
 
             $query = ("select * from course");
@@ -41,19 +44,18 @@ include_once "db_conn.php"; ?>
 
             for ($i = 0; $i < count($result); $i++) {
                 echo "<tr>";
-                echo "<td>" . $result[$i]['course_id'] . "</td>";
                 echo "<td>" . $result[$i]['course_name'] . "</td>";
                 echo "<td>" . $result[$i]['department_name'] . "</td>";
                 echo "<td>" . $result[$i]['course_time'] . "</td>";
-                echo "<td>" . $result[$i]['course_location'] . "</td>";
+                echo '<input type="hidden" name="courseId" form="infoForm" value="'.$result[$i]['course_id'].'"> ';
+                echo '<td><input class="waves-effect waves-light btn" type="submit"  name="submit" value="更多資訊"></td>';
                 echo "</tr>";
             }
             ?>
         </table>
         <br>
-
-
         <a class="waves-effect waves-light btn-small margin5" onclick=location.href="index.php">回到標題</a>
+    </form>
 
 </center>
 
