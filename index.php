@@ -23,7 +23,7 @@ include('header.php');?>
 
 <h3 class="black-text">歡迎來到課程評分系統</h3>
 <a class="waves-effect waves-light btn-small margin5" onclick=location.href="login.php">用戶登入/註冊</a>
-<a class="waves-effect waves-light btn-small margin5" onclick=location.href="course.php">所有課程</a>
+<a class="waves-effect waves-light btn-small margin5" onclick=location.href="course.php">進入系統</a>
 </center>
 
 <?php

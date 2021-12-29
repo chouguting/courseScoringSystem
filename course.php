@@ -1,7 +1,24 @@
 <?php
 include('header.php'); ?>
 <?php
-include_once "db_conn.php"; ?>
+include_once "db_conn.php"; 
+session_start();
+if(isset($_SESSION["hasSignedIn"]) && $_SESSION["hasSignedIn"]==true){
+    echo 'user_id:'.$_SESSION["user_id"].'</br>';
+    echo 'username:'.$_SESSION["username"].'</br>';
+}
+
+?>
+<?php
+    if(array_key_exists('logOut', $_POST)) {
+        logOut();
+    }
+    function logOut() {
+        $_SESSION["hasSignedIn"] = false;
+        header("Refresh:1");
+    }
+?>
+
 <header class="mdc-top-app-bar">
     <div class="mdc-top-app-bar__row">
         <section class="mdc-top-app-bar__section mdc-top-app-bar__section--align-start">
@@ -19,10 +36,26 @@ include_once "db_conn.php"; ?>
     <br/>
     <br/>
     <br/>
+    
+
 
 
 
     <h3> 查詢資料</h3>
+    <form method="post">
+    <?php
+
+        echo 'isset:'.isset($_SESSION["hasSignedIn"]).'</br>';
+        echo 'hasSignedIn:'.$_SESSION["hasSignedIn"].'</br>';
+        echo 'user_id:'.$_SESSION["user_id"].'</br>';
+        echo 'username:'.$_SESSION["username"].'</br>';
+        if(isset($_SESSION["hasSignedIn"]) && $_SESSION["hasSignedIn"]==true){
+
+            echo '<input type="submit" name="logOut"
+                class="btn waves-effect waves-light btn-small margin5" value="登出" />';
+        }
+    ?>
+    </form>
     <form id="infoForm" action="courseInfo.php" method="post">
         <table border='1' style='width:70%'>
             <tr>

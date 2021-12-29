@@ -2,7 +2,7 @@
 include('header.php');
 include_once "db_conn.php";
 header("Content-Type: text/html; charset=utf-8");
-session_start();
+
 if($_SERVER["REQUEST_METHOD"] == "POST") {
     $username = $_POST['username'];
     $password = $_POST['password'];
@@ -10,13 +10,18 @@ if($_SERVER["REQUEST_METHOD"] == "POST") {
     $stmt = $db->prepare($query);
     $stmt -> execute(array($username, $password));
     $result = $stmt -> fetchAll();
+
     //echo "<script>alert(strval(count($result)))</script>";
     if(count($result)==1){
-        echo "<script>alert('登入成功')</script>";
-        $_SESSION["loggedin"] = true;
+        //echo "<script>alert('登入成功')</script>";
+        session_start();
+
+        $_SESSION["hasSignedIn"] = true;
         $_SESSION["user_id"] = $result[0]['user_id'];
         $_SESSION["username"] = $username;
         $_SESSION["user_level"] = $result[0]['user_level'];
+        header("Location: course.php");
+        exit;
     }
     else{
         echo "<script>alert('帳號或密碼錯誤')</script>";
@@ -51,13 +56,13 @@ if($_SERVER["REQUEST_METHOD"] == "POST") {
         <form class="col s6 offset-s3" action="" method="post">
             <div class="row">
                 <div class="input-field col s12">
-                    <textarea id="textarea1" class="materialize-textarea" type="text" name="username"></textarea>
+                    <input id="textarea1" class="materialize-textarea" type="text" name="username"></input>
                     <label for="textarea1">帳號</label>
                 </div>
             </div>
             <div class="row">
                 <div class="input-field col s12">
-                    <textarea id="textarea1" class="materialize-textarea" type="text" name="password"></textarea>
+                    <input id="textarea1" class="materialize-textarea" type="text" name="password"></input>
                     <label for="textarea1">密碼</label>
                 </div>
             </div>
