@@ -51,7 +51,11 @@ if(isset($_SESSION["hasSignedIn"]) && $_SESSION["hasSignedIn"]==true){
                 <th>時間</th>
                 <th>詳細資料</th>
                 <?php
-                
+                    if(isset($_SESSION["hasSignedIn"]) && $_SESSION["hasSignedIn"]==true) {
+                        if ($_SESSION["user_level"] == 's') {
+                            echo '<th>編輯</th>';
+                        }
+                    }
                 ?>
             </tr>
 
@@ -68,7 +72,14 @@ if(isset($_SESSION["hasSignedIn"]) && $_SESSION["hasSignedIn"]==true){
                 echo "<td>" . $result[$i]['department_name'] . "</td>";
                 echo "<td>" . $result[$i]['course_time'] . "</td>";
                 echo '<input type="hidden" name="courseId" form="infoForm" value="'.$result[$i]['course_id'].'"> ';
+
                 echo '<td><input class="waves-effect waves-light btn" type="submit"  name="submit" value="更多資訊"></td>';
+                if (isset($_SESSION["hasSignedIn"]) && $_SESSION["hasSignedIn"] == true ) {
+                    if ($_SESSION["user_level"] == 's') {
+                        echo '<td><input class="waves-effect waves-light btn" type="submit"  name="submit" value="編輯"></td>';
+                    }
+                }
+
                 echo "</tr>";
             }
             ?>
@@ -86,6 +97,8 @@ if(isset($_SESSION["hasSignedIn"]) && $_SESSION["hasSignedIn"]==true){
             }
             ?>
         </form>
+
+        
 
 
 </center>

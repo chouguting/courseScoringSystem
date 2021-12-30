@@ -2,6 +2,11 @@
     header("Content-Type: text/html; charset=utf-8");
     include('header.php');
     include_once "db_conn.php";
+    session_start();
+    if(isset($_SESSION["hasSignedIn"]) && $_SESSION["hasSignedIn"]==true){
+        echo 'user_id:'.$_SESSION["user_id"].'</br>';
+        echo 'username:'.$_SESSION["username"].'</br>';
+    }
     $courseId = $_POST['courseId'];
     echo $courseId;
     $query = "select * from course where course_id = ?";
@@ -19,6 +24,11 @@
     echo $result[0]['instructor_id'];
     $stmt2->execute(array($result[0]['instructor_id']));
     $result_instructor = $stmt2->fetchAll();
+
+    $query3 = "select * from rating where course_id = ?";
+    $stmt3 = $db->prepare($query3);
+    $stmt3->execute(array($courseId));
+    $result_ratings = $stmt3->fetchAll();
 ?>
 <header class="mdc-top-app-bar">
     <div class="mdc-top-app-bar__row">
@@ -63,8 +73,7 @@
         }
         ?>
     </table>
-
-
+    <br>
     <h3> 開課老師</h3>
     <table border='1' style='width:70%'>
         <tr>
@@ -83,6 +92,44 @@
         ?>
     </table>
     <br>
+    <h3> 評價</h3>
+    <table border='1' style='width:70%'>
+        <tr>
+            <th>評分</th>
+            <th>簡評</th>
+            <th>評分時間</th>
+        </tr>
+
+        <?php
+        for ($i = 0; $i < count($result_ratings); $i++) {
+            echo "<tr>";
+            echo "<td>" . $result_ratings[$i]['rating'] . "</td>";
+            echo "<td>" . $result_ratings[$i]['impression'] . "</td>";
+            echo "<td>" . $result_ratings[$i]['rating_time'] . "</td>";
+            echo "</tr>";
+        }
+        ?>
+    </table>
+
+    <?php
+    if(isset($_SESSION["hasSignedIn"]) && $_SESSION["hasSignedIn"]==true) {
+        if ($_SESSION["user_level"] == 's') {
+            echo '<div class="fixed-action-btn">
+                   <a class="btn-floating btn-large red">
+                     <i class="large material-icons">mode_edit</i>
+                    </a>
+                    <ul>
+                    <li><a class="btn-floating red"><i class="material-icons">insert_chart</i></a></li>
+                    <li><a class="btn-floating yellow darken-1"><i class="material-icons">format_quote</i></a></li>
+                    <li><a class="btn-floating green"><i class="material-icons">publish</i></a></li>
+                    <li><a class="btn-floating blue"><i class="material-icons">attach_file</i></a></li>
+                  </ul>
+                </div>';
+        }
+    }
+    ?>
+
+
 
 
 
