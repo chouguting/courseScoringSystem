@@ -4,24 +4,24 @@
     include_once "db_conn.php";
     session_start();
     if(isset($_SESSION["hasSignedIn"]) && $_SESSION["hasSignedIn"]==true){
-        echo 'user_id:'.$_SESSION["user_id"].'</br>';
-        echo 'username:'.$_SESSION["username"].'</br>';
+        //echo 'user_id:'.$_SESSION["user_id"].'</br>';
+        //echo 'username:'.$_SESSION["username"].'</br>';
     }
     $courseId = $_GET['course_id'];
-    echo $courseId;
+    //echo $courseId;
     $query = "select * from course where course_id = ?";
     $stmt = $db->prepare($query);
     $stmt->execute(array($courseId));
     $result = $stmt->fetchAll();
     if(count($result)>0){
-        echo 'success';
+        //echo 'success';
     }else{
-        echo 'fail';
+        //echo 'fail';
     }
 
     $query2 = "select * from instructor where instructor_id = ?";
     $stmt2 = $db->prepare($query2);
-    echo $result[0]['instructor_id'];
+    //echo $result[0]['instructor_id'];
     $stmt2->execute(array($result[0]['instructor_id']));
     $result_instructor = $stmt2->fetchAll();
 
