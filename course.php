@@ -17,14 +17,6 @@ if(isset($_SESSION["hasSignedIn"]) && $_SESSION["hasSignedIn"]==true){
         $_SESSION["hasSignedIn"] = false;
         header("Refresh:1");
     }
-
-    if(array_key_exists('courseInfo', $_POST)) {
-        courseInfo();
-    }
-    function courseInfo() {
-        $_SESSION["hasSignedIn"] = false;
-        header("Refresh:1");
-    }
 ?>
 
 <header class="mdc-top-app-bar">
@@ -51,11 +43,11 @@ if(isset($_SESSION["hasSignedIn"]) && $_SESSION["hasSignedIn"]==true){
 
 
 
-    <h3 class="inline"> 查詢資料</h3>
     
-
+    
     <div class="row">
-        <form class="col s4 offset-s7 inline" action="" method="post" style=''>
+        <h3 class="inline"> 查詢資料</h3>
+        <form class="inline col s4 offset-s7 " action="" method="post" style=''>
             <div class="row inline">
                 <div class="input-field col s7">
                     <i class="material-icons prefix ">search</i>
@@ -83,7 +75,7 @@ if(isset($_SESSION["hasSignedIn"]) && $_SESSION["hasSignedIn"]==true){
             <tbody class="tbody2">
                 <?php
                 $searchWord='';
-               // error_reporting(E_ERROR | E_PARSE);
+                error_reporting(E_ERROR | E_PARSE);
                 if(isset($_POST['searchWord'])){
                     $searchWord=$_POST['searchWord'];
                 }
@@ -113,9 +105,19 @@ if(isset($_SESSION["hasSignedIn"]) && $_SESSION["hasSignedIn"]==true){
             </tbody>
         </table>
         <br>
+    <br>
+    <br>
         <a class="waves-effect waves-light btn-small margin5" onclick=location.href="index.php">回到標題</a>
 <!--        </form>-->
-        <form = method="post">
+        
+        <?php
+        if(isset($_SESSION["hasSignedIn"]) && $_SESSION["hasSignedIn"]==true && $_SESSION["user_level"]=='s'){
+            echo '<a class="waves-effect waves-light btn-small margin5" onclick=location.href="courseAdd.php">新增課程</a>';
+        }
+        ?>
+    
+        
+        <form  method="post">
             <?php
             if(isset($_SESSION["hasSignedIn"]) && $_SESSION["hasSignedIn"]==true){
                 echo '<input type="submit" name="logOut"
@@ -123,6 +125,26 @@ if(isset($_SESSION["hasSignedIn"]) && $_SESSION["hasSignedIn"]==true){
             }
             ?>
         </form>
+
+        <?php
+        if(isset($_SESSION["hasSignedIn"]) && $_SESSION["hasSignedIn"]==true) {
+            if ($_SESSION["user_level"] == 's') {
+                echo '<div class="fixed-action-btn">
+                       <a class="btn-floating btn-large red"  onclick=location.href="courseAdd.php">
+                         <i class="large material-icons">add</i>
+                        </a>
+                       
+                    </div>';
+            }
+        }
+        ?>
+
+    <div class="fixed-action-btn">
+        <a class="btn-floating btn-large red"  onclick=location.href="courseAdd.php">
+            <i class="large material-icons">add</i>
+        </a>
+
+    </div>
 </center>
 
 <?php
