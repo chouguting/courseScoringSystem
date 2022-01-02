@@ -66,5 +66,30 @@ input[type=submit] {
   padding-right: 20px;
 }
 
+.scroll{
+  display: block;
+  height: 200px;       /* Just for the demo          */
+  overflow-y: auto;    /* Trigger vertical scroll    */
+  overflow-x: hidden;  /* Hide the horizontal scroll */
+}
+
+
+tbody {
+  display: block;
+  height: 50%;
+  overflow: auto;
+}
+thead, tbody tr {
+  display: table;
+  width: 100%;
+  table-layout: fixed;/* even columns width , fix width of table too*/
+}
+thead {
+  width: calc( 100% - 1em )/* scrollbar is average 1em/16px width, remove it from thead width */
+}
+table {
+  width: auto;
+}
+
 
 body {margin:0;padding:0}

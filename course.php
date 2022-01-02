@@ -36,53 +36,65 @@ if(isset($_SESSION["hasSignedIn"]) && $_SESSION["hasSignedIn"]==true){
     <br/>
     <br/>
     <br/>
+    <br/>
+    <br/>
 
 
 
 
 
-    <h3> 查詢資料</h3>
-
+    <h3 class="inline"> 查詢資料</h3>
+    
+    <br/>
+    
+    
     <form id="infoForm" action="courseInfo.php" method="post">
-        <table border='1' style='width:70%'>
-            <tr>
+        <table style='width:70%'>
+            
+        </table>
+        <table border='1' class="" style='width:70%'>
+            <thead>
+                <tr>
                 <th>課程名稱</th>
                 <th>學系</th>
                 <th>時間</th>
                 <th>詳細資料</th>
                 <?php
-                    if(isset($_SESSION["hasSignedIn"]) && $_SESSION["hasSignedIn"]==true) {
-                        if ($_SESSION["user_level"] == 's') {
-                            echo '<th>編輯</th>';
-                        }
-                    }
-                ?>
-            </tr>
-
-            <?php
-
-            $query = ("select * from course");
-            $stmt = $db->prepare($query);
-            $stmt->execute();
-            $result = $stmt->fetchAll();
-
-            for ($i = 0; $i < count($result); $i++) {
-                echo "<tr>";
-                echo "<td>" . $result[$i]['course_name'] . "</td>";
-                echo "<td>" . $result[$i]['department_name'] . "</td>";
-                echo "<td>" . $result[$i]['course_time'] . "</td>";
-                echo '<input type="hidden" name="courseId" form="infoForm" value="'.$result[$i]['course_id'].'"> ';
-
-                echo '<td><input class="waves-effect waves-light btn" type="submit"  name="submit" value="更多資訊"></td>';
-                if (isset($_SESSION["hasSignedIn"]) && $_SESSION["hasSignedIn"] == true ) {
+                if(isset($_SESSION["hasSignedIn"]) && $_SESSION["hasSignedIn"]==true) {
                     if ($_SESSION["user_level"] == 's') {
-                        echo '<td><input class="waves-effect waves-light btn" type="submit"  name="submit" value="編輯"></td>';
+                        echo '<th>編輯</th>';
                     }
                 }
-
-                echo "</tr>";
-            }
-            ?>
+                ?>
+                </tr>
+            
+            </thead>
+            
+                <?php
+    
+                $query = ("select * from course");
+                $stmt = $db->prepare($query);
+                $stmt->execute();
+                $result = $stmt->fetchAll();
+    
+                for ($i = 0; $i < count($result); $i++) {
+                    echo "<tr>";
+                    echo "<td>" . $result[$i]['course_name'] . "</td>";
+                    echo "<td>" . $result[$i]['department_name'] . "</td>";
+                    echo "<td>" . $result[$i]['course_time'] . "</td>";
+                    echo '<input type="hidden" name="courseId" form="infoForm" value="'.$result[$i]['course_id'].'"> ';
+    
+                    echo '<td><input class="waves-effect waves-light btn" type="submit"  name="submit" value="更多資訊"></td>';
+                    if (isset($_SESSION["hasSignedIn"]) && $_SESSION["hasSignedIn"] == true ) {
+                        if ($_SESSION["user_level"] == 's') {
+                            echo '<td><input class="waves-effect waves-light btn" type="submit"  name="submit" value="編輯"></td>';
+                        }
+                    }
+    
+                    echo "</tr>";
+                }
+                ?>
+            
         </table>
         <br>
         <a class="waves-effect waves-light btn-small margin5" onclick=location.href="index.php">回到標題</a>
