@@ -66,28 +66,25 @@ input[type=submit] {
   padding-right: 20px;
 }
 
-.scroll{
-  display: block;
-  height: 200px;       / Just for the demo          /
-overflow-y: auto;    / Trigger vertical scroll    /
-overflow-x: hidden;  / Hide the horizontal scroll /
-}
-
 .tbody2 {
   display: block;
-  height: 400px;
+  height: 100%;
   overflow: auto;
+  overflow-y: auto;    / Trigger vertical scroll    /
+  overflow-x: hidden;  / Hide the horizontal scroll /
 }
 .thead2, .tbody2 tr {
   display: table;
   width: 100%;
+  height: auto;
   table-layout: fixed;/* even columns width , fix width of table too*/
 }
 .thead2 {
-  width: calc( 100% - 1em )/* scrollbar is average 1em/16px width, remove it from thead width */
+  width: calc( 100% - 1em );/* scrollbar is average 1em/16px width, remove it from thead width */
 }
 .table2 {
-  width: auto;
+  width: 80%;
+  height:40%;
 }
 
 .vertical-center {
@@ -98,5 +95,12 @@ overflow-x: hidden;  / Hide the horizontal scroll /
   transform: translateY(-50%);
 }
 
+html,body,center{
+  height:100%;
+  width: 100%
+}
 
-body {margin:0;padding:0}
+body {
+  margin:0;
+  padding:0;
+}

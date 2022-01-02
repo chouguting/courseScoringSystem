@@ -4,8 +4,8 @@ include('header.php'); ?>
 include_once "db_conn.php"; 
 session_start();
 if(isset($_SESSION["hasSignedIn"]) && $_SESSION["hasSignedIn"]==true){
-    echo 'user_id:'.$_SESSION["user_id"].'</br>';
-    echo 'username:'.$_SESSION["username"].'</br>';
+    //echo 'user_id:'.$_SESSION["user_id"].'</br>';
+    //echo 'username:'.$_SESSION["username"].'</br>';
 }
 
 ?>
@@ -70,24 +70,17 @@ if(isset($_SESSION["hasSignedIn"]) && $_SESSION["hasSignedIn"]==true){
     </div>
     
     <br/>
-        <table class="table2" border='1' class="" style='width:70%'>
+        <table class="table2">
             <thead class="thead2">
                 <tr>
                 <th>課程名稱</th>
                 <th>學系</th>
                 <th>時間</th>
                 <th>詳細資料</th>
-                <?php
-                if(isset($_SESSION["hasSignedIn"]) && $_SESSION["hasSignedIn"]==true) {
-                    if ($_SESSION["user_level"] == 's') {
-                        echo '<th>編輯</th>';
-                    }
-                }
-                ?>
                 </tr>
             
             </thead>
-            <tbody class="scroll tbody2">
+            <tbody class="tbody2">
                 <?php
                 $searchWord='';
                // error_reporting(E_ERROR | E_PARSE);
@@ -120,24 +113,16 @@ if(isset($_SESSION["hasSignedIn"]) && $_SESSION["hasSignedIn"]==true){
             </tbody>
         </table>
         <br>
-        <br>
-        <br>
         <a class="waves-effect waves-light btn-small margin5" onclick=location.href="index.php">回到標題</a>
 <!--        </form>-->
         <form = method="post">
-
             <?php
             if(isset($_SESSION["hasSignedIn"]) && $_SESSION["hasSignedIn"]==true){
-
                 echo '<input type="submit" name="logOut"
                             class="btn waves-effect waves-light btn-small margin5" value="登出" />';
             }
             ?>
         </form>
-
-        
-
-
 </center>
 
 <?php
