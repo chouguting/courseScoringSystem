@@ -52,6 +52,23 @@ if(isset($_SESSION["hasSignedIn"]) && $_SESSION["hasSignedIn"]==true){
 
 
     <h3 class="inline"> 查詢資料</h3>
+    
+
+    <div class="row">
+        <form class="col s4 offset-s7 inline" action="" method="post" style=''>
+            <div class="row inline">
+                <div class="input-field col s7">
+                    <i class="material-icons prefix ">search</i>
+                    <input id="textarea1" class="materialize-textarea" type="text" name="searchWord"></input>
+                    <label for="icon_prefix2">查詢</label>
+                </div>
+                <p></p>
+                <input class="inline btn waves-effect waves-light btn-small margin5 vertical-center " type="submit"  name="submit" value="查詢">
+            </div>
+           
+        </form>
+    </div>
+    
     <br/>
         <table class="table2" border='1' class="" style='width:70%'>
             <thead class="thead2">
@@ -72,10 +89,18 @@ if(isset($_SESSION["hasSignedIn"]) && $_SESSION["hasSignedIn"]==true){
             </thead>
             <tbody class="scroll tbody2">
                 <?php
-    
-                $query = ("select * from course");
+                $searchWord='';
+               // error_reporting(E_ERROR | E_PARSE);
+                if(isset($_POST['searchWord'])){
+                    $searchWord=$_POST['searchWord'];
+                }
+
+
+
+                $query = ("select * from course
+                            where course_name like ?");
                 $stmt = $db->prepare($query);
-                $stmt->execute();
+                $stmt->execute(array('%'.$searchWord.'%'));
                 $result = $stmt->fetchAll();
     
                 for ($i = 0; $i < count($result); $i++) {

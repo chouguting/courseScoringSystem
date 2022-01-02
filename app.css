@@ -90,5 +90,13 @@ overflow-x: hidden;  / Hide the horizontal scroll /
   width: auto;
 }
 
+.vertical-center {
+  margin: 0;
+  position: absolute;
+  top: 50%;
+  -ms-transform: translateY(-50%);
+  transform: translateY(-50%);
+}
+
 
 body {margin:0;padding:0}
