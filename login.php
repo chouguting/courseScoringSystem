@@ -56,13 +56,13 @@ if($_SERVER["REQUEST_METHOD"] == "POST") {
         <form class="col s6 offset-s3" action="" method="post">
             <div class="row">
                 <div class="input-field col s12">
-                    <input id="textarea1" class="materialize-textarea" type="text" name="username"></input>
+                    <input id="textarea1" class="materialize-textarea" type="text" name="username"/>
                     <label for="textarea1">帳號</label>
                 </div>
             </div>
             <div class="row">
                 <div class="input-field col s12">
-                    <input id="textarea1" class="materialize-textarea" type="text" name="password"></input>
+                    <input id="textarea1" class="materialize-textarea" type="text" name="password"/>
                     <label for="textarea1">密碼</label>
                 </div>
             </div>
