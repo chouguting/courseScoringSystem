@@ -7,7 +7,7 @@
         echo 'user_id:'.$_SESSION["user_id"].'</br>';
         echo 'username:'.$_SESSION["username"].'</br>';
     }
-    $courseId = $_POST['courseId'];
+    $courseId = $_GET['course_id'];
     echo $courseId;
     $query = "select * from course where course_id = ?";
     $stmt = $db->prepare($query);

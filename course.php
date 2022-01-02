@@ -17,6 +17,14 @@ if(isset($_SESSION["hasSignedIn"]) && $_SESSION["hasSignedIn"]==true){
         $_SESSION["hasSignedIn"] = false;
         header("Refresh:1");
     }
+
+    if(array_key_exists('courseInfo', $_POST)) {
+        courseInfo();
+    }
+    function courseInfo() {
+        $_SESSION["hasSignedIn"] = false;
+        header("Refresh:1");
+    }
 ?>
 
 <header class="mdc-top-app-bar">
@@ -44,16 +52,9 @@ if(isset($_SESSION["hasSignedIn"]) && $_SESSION["hasSignedIn"]==true){
 
 
     <h3 class="inline"> 查詢資料</h3>
-    
     <br/>
-    
-    
-    <form id="infoForm" action="courseInfo.php" method="post">
-        <table style='width:70%'>
-            
-        </table>
-        <table border='1' class="" style='width:70%'>
-            <thead>
+        <table class="table2" border='1' class="" style='width:70%'>
+            <thead class="thead2">
                 <tr>
                 <th>課程名稱</th>
                 <th>學系</th>
@@ -69,7 +70,7 @@ if(isset($_SESSION["hasSignedIn"]) && $_SESSION["hasSignedIn"]==true){
                 </tr>
             
             </thead>
-            
+            <tbody class="scroll tbody2">
                 <?php
     
                 $query = ("select * from course");
@@ -78,27 +79,26 @@ if(isset($_SESSION["hasSignedIn"]) && $_SESSION["hasSignedIn"]==true){
                 $result = $stmt->fetchAll();
     
                 for ($i = 0; $i < count($result); $i++) {
-                    echo "<tr>";
-                    echo "<td>" . $result[$i]['course_name'] . "</td>";
-                    echo "<td>" . $result[$i]['department_name'] . "</td>";
-                    echo "<td>" . $result[$i]['course_time'] . "</td>";
-                    echo '<input type="hidden" name="courseId" form="infoForm" value="'.$result[$i]['course_id'].'"> ';
-    
-                    echo '<td><input class="waves-effect waves-light btn" type="submit"  name="submit" value="更多資訊"></td>';
-                    if (isset($_SESSION["hasSignedIn"]) && $_SESSION["hasSignedIn"] == true ) {
-                        if ($_SESSION["user_level"] == 's') {
-                            echo '<td><input class="waves-effect waves-light btn" type="submit"  name="submit" value="編輯"></td>';
-                        }
-                    }
+                    echo '<form action="courseInfo.php" method="post">';
+                    echo '<tr>';
+                    echo '<td>' . $result[$i]['course_name'] . "</td>";
+                    echo '<td>' . $result[$i]['department_name'] . "</td>";
+                    echo '<td> ' . $result[$i]['course_time'] . "</td>";
+                    echo '<input type="hidden" name="courseId" value="'.$result[$i]['course_id'].'">';
+
+                    echo '<td><a class="waves-effect waves-light btn" href="courseInfo.php?course_id='.$result[$i]['course_id'].'">更多資訊</a></td>';
     
                     echo "</tr>";
+                    echo "</form>";
                 }
                 ?>
-            
+            </tbody>
         </table>
         <br>
+        <br>
+        <br>
         <a class="waves-effect waves-light btn-small margin5" onclick=location.href="index.php">回到標題</a>
-        </form>
+<!--        </form>-->
         <form = method="post">
 
             <?php

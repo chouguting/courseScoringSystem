@@ -68,26 +68,25 @@ input[type=submit] {
 
 .scroll{
   display: block;
-  height: 200px;       /* Just for the demo          */
-  overflow-y: auto;    /* Trigger vertical scroll    */
-  overflow-x: hidden;  /* Hide the horizontal scroll */
+  height: 200px;       / Just for the demo          /
+overflow-y: auto;    / Trigger vertical scroll    /
+overflow-x: hidden;  / Hide the horizontal scroll /
 }
 
-
-tbody {
+.tbody2 {
   display: block;
-  height: 50%;
+  height: 400px;
   overflow: auto;
 }
-thead, tbody tr {
+.thead2, .tbody2 tr {
   display: table;
   width: 100%;
   table-layout: fixed;/* even columns width , fix width of table too*/
 }
-thead {
+.thead2 {
   width: calc( 100% - 1em )/* scrollbar is average 1em/16px width, remove it from thead width */
 }
-table {
+.table2 {
   width: auto;
 }
 
