@@ -3,6 +3,7 @@ include('header.php'); ?>
 <?php
 include_once "db_conn.php"; 
 session_start();
+$_SESSION["edit_mode"] = false;
 if(isset($_SESSION["hasSignedIn"]) && $_SESSION["hasSignedIn"]==true){
     //echo 'user_id:'.$_SESSION["user_id"].'</br>';
     //echo 'username:'.$_SESSION["username"].'</br>';
@@ -15,15 +16,7 @@ if(isset($_SESSION["hasSignedIn"]) && $_SESSION["hasSignedIn"]==true){
     }
     function logOut() {
         $_SESSION["hasSignedIn"] = false;
-        header("Refresh:1");
-    }
-
-    if(array_key_exists('courseInfo', $_POST)) {
-        courseInfo();
-    }
-    function courseInfo() {
-        $_SESSION["hasSignedIn"] = false;
-        header("Refresh:1");
+        //header("Refresh:1");
     }
 ?>
 
@@ -83,7 +76,7 @@ if(isset($_SESSION["hasSignedIn"]) && $_SESSION["hasSignedIn"]==true){
             <tbody class="tbody2">
                 <?php
                 $searchWord='';
-               // error_reporting(E_ERROR | E_PARSE);
+                // error_reporting(E_ERROR | E_PARSE);
                 if(isset($_POST['searchWord'])){
                     $searchWord=$_POST['searchWord'];
                 }
@@ -115,7 +108,7 @@ if(isset($_SESSION["hasSignedIn"]) && $_SESSION["hasSignedIn"]==true){
         <br>
         <a class="waves-effect waves-light btn-small margin5" onclick=location.href="index.php">回到標題</a>
 <!--        </form>-->
-        <form = method="post">
+        <form method="post">
             <?php
             if(isset($_SESSION["hasSignedIn"]) && $_SESSION["hasSignedIn"]==true){
                 echo '<input type="submit" name="logOut"

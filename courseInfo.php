@@ -3,6 +3,7 @@
     include('header.php');
     include_once "db_conn.php";
     session_start();
+    $edit_mode = false;
     if(isset($_SESSION["hasSignedIn"]) && $_SESSION["hasSignedIn"]==true){
         //echo 'user_id:'.$_SESSION["user_id"].'</br>';
         //echo 'username:'.$_SESSION["username"].'</br>';
@@ -30,11 +31,31 @@
     $stmt3->execute(array($courseId));
     $result_ratings = $stmt3->fetchAll();
 ?>
+<?php
+if($_SERVER["REQUEST_METHOD"] == "POST"){
+    if(array_key_exists('edit', $_POST)) {
+        $_SESSION["edit_mode"] = true;
+    }
+    elseif(array_key_exists('view', $_POST)) {
+        $_SESSION["edit_mode"] = false;
+    }
+    else{
+        $user_id = array_keys($_POST);
+        $query = "delete from rating where user_id = ?";
+        $stmt = $db->prepare($query);
+        $stmt->execute(array(intval($user_id[0])));
+        $count = $stmt->rowCount();
+        //header("Refresh:0");
+        echo sprintf('<script type="text/JavaScript"> location.href="courseInfo.php?course_id=%s"; </script>',$courseId);
+    }
+}
+
+?>
 <header class="mdc-top-app-bar">
     <div class="mdc-top-app-bar__row">
         <section class="mdc-top-app-bar__section mdc-top-app-bar__section--align-start">
             <button class="material-icons mdc-top-app-bar__action-item mdc-icon-button"
-                    onclick='history.back()'>arrow_back
+                    onclick="location.href='course.php';">arrow_back
             </button>
             <?php
             echo '<span class="mdc-top-app-bar__title">'.$result[0]['course_name'].'</span>';
@@ -50,89 +71,115 @@
     <br/>
     <br/>
     <h3> 課程資訊</h3>
-    <table border='1' style='width:70%' >
-        <tr>
-            <th>課號</th>
-            <th>課程名稱</th>
-            <th>學系</th>
-            <th>時間</th>
-            <th>地點</th>
-        </tr>
+    <form method="post">
+        <table border='1' style='width:70%' >
+            <tr>
+                <th>課號</th>
+                <th>課程名稱</th>
+                <th>學系</th>
+                <th>時間</th>
+                <th>地點</th>
+                <th>開課狀態</th>
+            </tr>
+            <?php
 
+            for ($i = 0; $i < count($result); $i++) {
+                echo "<tr>";
+                if($_SESSION["edit_mode"] == true){
+                    echo sprintf('<td><input class="materialize-textarea" type="text" name="course_id" value="%s"/></td>', $result[$i]['course_id']);
+                    echo sprintf('<td><input class="materialize-textarea" type="text" name="course_name" value="%s"/></td>', $result[$i]['course_name']);
+                    echo sprintf('<td><input class="materialize-textarea" type="text" name="department_name" value="%s"/></td>', $result[$i]['department_name']);
+                    echo sprintf('<td><input class="materialize-textarea" type="text" name="course_time" value="%s"/></td>', $result[$i]['course_time']);
+                    echo sprintf('<td><input class="materialize-textarea" type="text" name="course_location" value="%s"/></td>', $result[$i]['course_location']);
+                    echo sprintf('<td><div class="switch"><label><input type="checkbox" name="course_status" %s><span class="lever"></span></label></div></td>',$result[$i]['course_status'] == "on" ? "checked":"");
+                }
+                else{
+                    echo "<td>" . $result[$i]['course_id'] . "</td>";
+                    echo "<td>" . $result[$i]['course_name'] . "</td>";
+                    echo "<td>" . $result[$i]['department_name'] . "</td>";
+                    echo "<td>" . $result[$i]['course_time'] . "</td>";
+                    echo "<td>" . $result[$i]['course_location'] . "</td>";
+                    echo "<td>" . ($result[$i]['course_status'] == "on" ? "是":"否") . "</td>";
+                }
+                echo "</tr>";
+            }
+            ?>
+        </table>
+        <br>
+        <h3> 開課老師</h3>
+        <table border='1' style='width:70%'>
+            <tr>
+                <th>教師姓名</th>
+                <th>所屬學系</th>
+            </tr>
+
+            <?php
+
+            for ($i = 0; $i < count($result_instructor); $i++) {
+                echo "<tr>";
+                if($_SESSION["edit_mode"] == true){
+                    echo sprintf('<td><input class="materialize-textarea" type="text" name="instructor_name" value="%s"/></td>', $result_instructor[$i]['instructor_name']);
+                    echo sprintf('<td><input class="materialize-textarea" type="text" name="department_name" value="%s"/></td>', $result_instructor[$i]['department_name']);
+                }
+                else {
+                    echo "<td>" . $result_instructor[$i]['instructor_name'] . "</td>";
+                    echo "<td>" . $result_instructor[$i]['department_name'] . "</td>";
+                }
+                echo "</tr>";
+            }
+            ?>
+        </table>
+    </form>
+    <form method="post">
+        <br>
+        <h3> 評價</h3>
+        <table border='1' style='width:70%'>
+            <tr>
+                <th>評分</th>
+                <th>簡評</th>
+                <th>評分時間</th>
+                <?php
+                    if($_SESSION["edit_mode"] == true)
+                        echo '<th></th>';
+                ?>
+            </tr>
+
+            <?php
+            for ($i = 0; $i < count($result_ratings); $i++) {
+                echo "<tr>";
+                echo "<td>" . $result_ratings[$i]['rating'] . "</td>";
+                echo "<td>" . $result_ratings[$i]['impression'] . "</td>";
+                echo "<td>" . $result_ratings[$i]['rating_time'] . "</td>";
+                if($_SESSION["edit_mode"] == true) {
+                    echo sprintf('<td><button class="btn-floating btn-large waves-effect waves-light red" type="submit" name="%s">
+                      <i class="material-icons">delete_forever</i>
+                      </button></td>',$result_ratings[$i]['user_id']);
+                }
+                echo "</tr>";
+            }
+            ?>
+        </table>
         <?php
-
-        for ($i = 0; $i < count($result); $i++) {
-            echo "<tr>";
-            echo "<td>" . $result[$i]['course_id'] . "</td>";
-            echo "<td>" . $result[$i]['course_name'] . "</td>";
-            echo "<td>" . $result[$i]['department_name'] . "</td>";
-            echo "<td>" . $result[$i]['course_time'] . "</td>";
-            echo "<td>" . $result[$i]['course_location'] . "</td>";
-
-            echo "</tr>";
+        if(isset($_SESSION["hasSignedIn"]) && $_SESSION["hasSignedIn"]==true) {
+            if ($_SESSION["user_level"] == 's' ) {
+                if($_SESSION["edit_mode"] == false){
+                    echo '<div class="fixed-action-btn">
+                  <button class="btn-floating btn-large waves-effect waves-light red" type="submit" name="edit">
+                  <i class="material-icons">mode_edit</i>
+                  </button>
+                  </div>';
+                }
+                else{
+                    echo '<div class="fixed-action-btn">
+                  <button class="btn-floating btn-large waves-effect waves-light green" type="submit" name="view">
+                  <i class="material-icons">check</i>
+                  </button>
+                  </div>';
+                }
+            }
         }
         ?>
-    </table>
-    <br>
-    <h3> 開課老師</h3>
-    <table border='1' style='width:70%'>
-        <tr>
-            <th>教師姓名</th>
-            <th>所屬學系</th>
-        </tr>
-
-        <?php
-
-        for ($i = 0; $i < count($result_instructor); $i++) {
-            echo "<tr>";
-            echo "<td>" . $result_instructor[$i]['instructor_name'] . "</td>";
-            echo "<td>" . $result_instructor[$i]['department_name'] . "</td>";
-            echo "</tr>";
-        }
-        ?>
-    </table>
-    <br>
-    <h3> 評價</h3>
-    <table border='1' style='width:70%'>
-        <tr>
-            <th>評分</th>
-            <th>簡評</th>
-            <th>評分時間</th>
-        </tr>
-
-        <?php
-        for ($i = 0; $i < count($result_ratings); $i++) {
-            echo "<tr>";
-            echo "<td>" . $result_ratings[$i]['rating'] . "</td>";
-            echo "<td>" . $result_ratings[$i]['impression'] . "</td>";
-            echo "<td>" . $result_ratings[$i]['rating_time'] . "</td>";
-            echo "</tr>";
-        }
-        ?>
-    </table>
-
-    <?php
-    if(isset($_SESSION["hasSignedIn"]) && $_SESSION["hasSignedIn"]==true) {
-        if ($_SESSION["user_level"] == 's') {
-            echo '<div class="fixed-action-btn">
-                   <a class="btn-floating btn-large red">
-                     <i class="large material-icons">mode_edit</i>
-                    </a>
-                    <ul>
-                    <li><a class="btn-floating red"><i class="material-icons">insert_chart</i></a></li>
-                    <li><a class="btn-floating yellow darken-1"><i class="material-icons">format_quote</i></a></li>
-                    <li><a class="btn-floating green"><i class="material-icons">publish</i></a></li>
-                    <li><a class="btn-floating blue"><i class="material-icons">attach_file</i></a></li>
-                  </ul>
-                </div>';
-        }
-    }
-    ?>
-
-
-
-
-
+    </form>
 </center>
 
 <?php
