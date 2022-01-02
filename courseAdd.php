@@ -14,6 +14,7 @@ if(isset($_SESSION["hasSignedIn"]) && $_SESSION["hasSignedIn"]==true){
 if($_SERVER["REQUEST_METHOD"] == "POST") {
     error_reporting(E_ERROR | E_PARSE);
     $course_id = $_POST['course_id'];
+
     $course_status = $_POST['course_status'];
     $course_name = $_POST['course_name'];
     $semester = $_POST['semester'];
