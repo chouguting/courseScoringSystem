@@ -7,8 +7,8 @@ if(isset($_SESSION["hasSignedIn"]) && $_SESSION["hasSignedIn"]==true){
     //echo 'user_id:'.$_SESSION["user_id"].'</br>';
     //echo 'username:'.$_SESSION["username"].'</br>';
 }else{
-    //echo '<script>alert("請先登入為管理者!");</script>';
-    //echo '<script>window.location.href="login.php";</script>';
+    echo '<script>alert("請先登入為管理者!");</script>';
+    echo '<script>window.location.href="login.php";</script>';
 }
 
 if($_SERVER["REQUEST_METHOD"] == "POST") {
