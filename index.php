@@ -1,6 +1,8 @@
 
 <?php
 session_start();
+echo $_SESSION["username"];
+echo $_SESSION["hasSignedIn"];
 include('header.php');
 include_once "db_conn.php";
 header("Content-Type: text/html; charset=utf-8");
