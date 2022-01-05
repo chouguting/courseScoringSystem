@@ -106,8 +106,6 @@
     <br/>
     <br/>
     <h3> 課程資訊</h3>
-    <label for="input-1" class="control-label">Rate This</label>
-    <input id="input-1" name="input-1" class="rating rating-loading" data-min="0" data-max="5" data-step="1">
     <form method="post">
         <table border='1' style='width:70%' >
             <tr>
@@ -167,44 +165,47 @@
         <br>
         <h3> 評價</h3>
         <table border='1' style='width:70%'>
-            <tr>
-                <th>用戶名稱</th>
-                <th>評分</th>
-                <th>簡評</th>
-                <th>評分時間</th>
-                <?php
-                    if($edit_mode == true)
-                        echo '<th></th>';
-                    if(isset($_SESSION["hasSignedIn"]) && $_SESSION["hasSignedIn"] == true && $_SESSION["user_level"] == 'u'){
-                        echo '<th></th>';
-                        $query = "select * from rating where user_id = ? and course_id = ?";
-                        $stmt = $db->prepare($query);
-                        $stmt->execute(array($_SESSION['user_id'], $old_course_id));
-                        if($stmt->rowCount() == 0){
-                            echo "<tr>";
-                            echo "<td></td>";
-                            echo '<td><div class="rating">
-                                  <input type="radio" id="star5" name="rating" value="5" hidden/>
-                                  <label for="star5"></label>
-                                  <input type="radio" id="star4" name="rating" value="4" hidden/>
-                                  <label for="star4"></label>
-                                  <input type="radio" id="star3" name="rating" value="3" hidden/>
-                                  <label for="star3"></label>
-                                  <input type="radio" id="star2" name="rating" value="2" hidden/>
-                                  <label for="star2"></label>
-                                  <input type="radio" id="star1" name="rating" value="1" hidden/>
-                                  <label for="star1"></label>
-                                  </div></td>';
-                            //echo '<td><input class="materialize-textarea" type="text" name="rating" value=""/></td>';
-                            echo '<td><input class="materialize-textarea" type="text" name="impression" value=""/></td>';
-                            echo '<td></td>';
-                            echo '<td><button class="btn-floating btn-large waves-effect waves-light blue" type="submit" name="send">
-                                  <i class="material-icons">send</i>
-                                  </button></td>';
+            <thead>
+                <tr>
+                    <th>用戶名稱</th>
+                    <th>評分</th>
+                    <th>簡評</th>
+                    <th>評分時間</th>
+                    <?php
+                        if($edit_mode == true)
+                            echo '<th></th>';
+                        if(isset($_SESSION["hasSignedIn"]) && $_SESSION["hasSignedIn"] == true && $_SESSION["user_level"] == 'u'){
+                            echo '<th></th>';
+                            $query = "select * from rating where user_id = ? and course_id = ?";
+                            $stmt = $db->prepare($query);
+                            $stmt->execute(array($_SESSION['user_id'], $old_course_id));
+                            if($stmt->rowCount() == 0){
+                                echo "<tr>";
+                                echo "<td></td>";
+                                echo '<td><div class="rating">
+                                      <input type="radio" id="star5" name="rating" value="5" hidden/>
+                                      <label for="star5"></label>
+                                      <input type="radio" id="star4" name="rating" value="4" hidden/>
+                                      <label for="star4"></label>
+                                      <input type="radio" id="star3" name="rating" value="3" hidden/>
+                                      <label for="star3"></label>
+                                      <input type="radio" id="star2" name="rating" value="2" hidden/>
+                                      <label for="star2"></label>
+                                      <input type="radio" id="star1" name="rating" value="1" hidden/>
+                                      <label for="star1"></label>
+                                      </div></td>';
+                                //echo '<td><input class="materialize-textarea" type="text" name="rating" value=""/></td>';
+                                echo '<td><input class="materialize-textarea" type="text" name="impression" value=""/></td>';
+                                echo '<td></td>';
+                                echo '<td><button class="btn-floating btn-large waves-effect waves-light blue" type="submit" name="send">
+                                      <i class="material-icons">send</i>
+                                      </button></td>';
+                            }
                         }
-                    }
-                ?>
-            </tr>
+                    ?>
+                </tr>
+            </thead>
+            <tbody>
                 <?php
                     for ($i = 0; $i < count($result_ratings); $i++) {
                         $query = "select * from user where user_id = ?";
@@ -213,17 +214,30 @@
                         $result = $stmt->fetchAll();
                         echo "<tr>";
                         echo "<td>" . $result[0]['username'] . "</td>";
-                        echo "<td>" . $result_ratings[$i]['rating'] . "</td>";
+                        echo sprintf('<td><div class="rating2">
+                                      <input type="radio" value="5" hidden disabled %s/>
+                                      <label></label>
+                                      <input type="radio" value="4" hidden disabled %s/>
+                                      <label></label>
+                                      <input type="radio" value="3" hidden disabled %s/>
+                                      <label></label>
+                                      <input type="radio" value="2" hidden disabled %s/>
+                                      <label></label>
+                                      <input type="radio" value="1" hidden disabled %s/>
+                                      <label></label>
+                                      </div></td>',$result_ratings[$i]['rating']==5?"checked":"",$result_ratings[$i]['rating']==4?"checked":"",$result_ratings[$i]['rating']==3?"checked":"",$result_ratings[$i]['rating']==2?"checked":"",$result_ratings[$i]['rating']==1?"checked":"");
+                        //echo "<td>" . $result_ratings[$i]['rating'] . "</td>";
                         echo "<td>" . $result_ratings[$i]['impression'] . "</td>";
                         echo "<td>" . $result_ratings[$i]['rating_time'] . "</td>";
                         if($edit_mode == true) {
                             echo sprintf('<td><button class="btn-floating btn-large waves-effect waves-light red" type="submit" name="%s">
-                              <i class="material-icons">delete_forever</i>
-                              </button></td>',$result_ratings[$i]['user_id']);
+                                      <i class="material-icons">delete_forever</i>
+                                      </button></td>',$result_ratings[$i]['user_id']);
                         }
                         echo "</tr>";
                     }
                 ?>
+            </tbody>
         </table>
         <?php
         if(isset($_SESSION["hasSignedIn"]) && $_SESSION["hasSignedIn"]==true) {

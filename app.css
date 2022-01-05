@@ -134,3 +134,25 @@ body {
 .rating > input:checked ~ label:hover ~ label {
   opacity: 0.5;
 }
+
+.rating2 {
+  font-size: 0;
+  display: table;
+}
+
+.rating2 > label {
+  color: #ddd;
+  float: right;
+}
+
+.rating2 > label:before {
+  padding: 5px;
+  font-size: 24px;
+  line-height: 1em;
+  display: inline-block;
+  content: "★";
+}
+
+.rating2 > input:checked ~ label {
+  color: #FFD700;
+}
