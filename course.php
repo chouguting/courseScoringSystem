@@ -1,14 +1,13 @@
 <?php
 include('header.php'); ?>
 <?php
-include_once "db_conn.php"; 
-session_start();
-$_SESSION["edit_mode"] = false;
-if(isset($_SESSION["hasSignedIn"]) && $_SESSION["hasSignedIn"]==true){
-    //echo 'user_id:'.$_SESSION["user_id"].'</br>';
-    //echo 'username:'.$_SESSION["username"].'</br>';
-}
-
+    include_once "db_conn.php";
+    session_start();
+    $_SESSION["edit_mode"] = false;
+    if(isset($_SESSION["hasSignedIn"]) && $_SESSION["hasSignedIn"]==true){
+        //echo 'user_id:'.$_SESSION["user_id"].'</br>';
+        //echo 'username:'.$_SESSION["username"].'</br>';
+    }
 ?>
 <?php
     if(array_key_exists('logOut', $_POST)) {
