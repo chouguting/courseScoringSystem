@@ -104,25 +104,25 @@ if(isset($_SESSION["hasSignedIn"]) && $_SESSION["hasSignedIn"]==true){
         <br>
     <br>
     <br>
-        <a class="waves-effect waves-light btn-small margin5" onclick=location.href="index.php">回到標題</a>
+<!--        <a class="waves-effect waves-light btn-small margin5" onclick=location.href="index.php">回到標題</a>-->
 <!--        </form>-->
         <form method="post">
 
-        <?php
-        if(isset($_SESSION["hasSignedIn"]) && $_SESSION["hasSignedIn"]==true && $_SESSION["user_level"]=='s'){
-            echo '<a class="waves-effect waves-light btn-small margin5" onclick=location.href="courseAdd.php">新增課程</a>';
-        }
-        ?>
+<!--        --><?php
+//        if(isset($_SESSION["hasSignedIn"]) && $_SESSION["hasSignedIn"]==true && $_SESSION["user_level"]=='s'){
+//            echo '<a class="waves-effect waves-light btn-small margin5" onclick=location.href="courseAdd.php">新增課程</a>';
+//        }
+//        ?>
 
 
-        <form  method="post">
-            <?php
-            if(isset($_SESSION["hasSignedIn"]) && $_SESSION["hasSignedIn"]==true){
-                echo '<input type="submit" name="logOut"
-                            class="btn waves-effect waves-light btn-small margin5" value="登出" />';
-            }
-            ?>
-        </form>
+<!--        <form  method="post">-->
+<!--            --><?php
+//            if(isset($_SESSION["hasSignedIn"]) && $_SESSION["hasSignedIn"]==true){
+//                echo '<input type="submit" name="logOut"
+//                            class="btn waves-effect waves-light btn-small margin5" value="登出" />';
+//            }
+//            ?>
+<!--        </form>-->
 
         <?php
         if(isset($_SESSION["hasSignedIn"]) && $_SESSION["hasSignedIn"]==true) {
@@ -136,6 +136,8 @@ if(isset($_SESSION["hasSignedIn"]) && $_SESSION["hasSignedIn"]==true){
             }
         }
         ?>
+            <a class="waves-effect waves-light btn-small margin5" onclick=location.href="instructor.php">教師列表</a>
+            <a class="waves-effect waves-light btn-small margin5" onclick=location.href="department.php">學系列表</a>
 
 
 </center>

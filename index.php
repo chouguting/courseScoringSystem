@@ -55,6 +55,7 @@ function logOut() {
         echo '<a class="waves-effect waves-light btn-small margin5" onclick=location.href="userManage.php">管理用戶</a>';
     }
     ?>
+
 </form>
 </center>
 
