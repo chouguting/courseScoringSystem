@@ -106,6 +106,8 @@
     <br/>
     <br/>
     <h3> 課程資訊</h3>
+    <label for="input-1" class="control-label">Rate This</label>
+    <input id="input-1" name="input-1" class="rating rating-loading" data-min="0" data-max="5" data-step="1">
     <form method="post">
         <table border='1' style='width:70%' >
             <tr>
@@ -181,7 +183,19 @@
                         if($stmt->rowCount() == 0){
                             echo "<tr>";
                             echo "<td></td>";
-                            echo '<td><input class="materialize-textarea" type="text" name="rating" value=""/></td>';
+                            echo '<td><div class="rating">
+                                  <input type="radio" id="star5" name="rating" value="5" hidden/>
+                                  <label for="star5"></label>
+                                  <input type="radio" id="star4" name="rating" value="4" hidden/>
+                                  <label for="star4"></label>
+                                  <input type="radio" id="star3" name="rating" value="3" hidden/>
+                                  <label for="star3"></label>
+                                  <input type="radio" id="star2" name="rating" value="2" hidden/>
+                                  <label for="star2"></label>
+                                  <input type="radio" id="star1" name="rating" value="1" hidden/>
+                                  <label for="star1"></label>
+                                  </div></td>';
+                            //echo '<td><input class="materialize-textarea" type="text" name="rating" value=""/></td>';
                             echo '<td><input class="materialize-textarea" type="text" name="impression" value=""/></td>';
                             echo '<td></td>';
                             echo '<td><button class="btn-floating btn-large waves-effect waves-light blue" type="submit" name="send">

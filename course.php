@@ -64,39 +64,46 @@ include('header.php'); ?>
                 <th>課程名稱</th>
                 <th>學系</th>
                 <th>時間</th>
+                <th>評分</th>
                 <th>詳細資料</th>
                 </tr>
             
             </thead>
             <tbody class="tbody2">
                 <?php
-                $searchWord='';
-                error_reporting(E_ERROR | E_PARSE);
-                if(isset($_POST['searchWord'])){
-                    $searchWord=$_POST['searchWord'];
-                }
+                    $searchWord='';
+                    error_reporting(E_ERROR | E_PARSE);
+                    if(isset($_POST['searchWord'])){
+                        $searchWord=$_POST['searchWord'];
+                    }
 
+                    $query = ("select * from course
+                                where course_name like ? order by (select avg(rating) from rating where rating.course_id = course.course_id) desc");
+                    $stmt = $db->prepare($query);
+                    $stmt->execute(array('%'.$searchWord.'%'));
+                    $result = $stmt->fetchAll();
 
-
-                $query = ("select * from course
-                            where course_name like ?");
-                $stmt = $db->prepare($query);
-                $stmt->execute(array('%'.$searchWord.'%'));
-                $result = $stmt->fetchAll();
-    
-                for ($i = 0; $i < count($result); $i++) {
-                    echo '<form action="courseInfo.php" method="post">';
-                    echo '<tr>';
-                    echo '<td>' . $result[$i]['course_name'] . "</td>";
-                    echo '<td>' . $result[$i]['department_name'] . "</td>";
-                    echo '<td> ' . $result[$i]['course_time'] . "</td>";
-                    echo '<input type="hidden" name="courseId" value="'.$result[$i]['course_id'].'">';
-
-                    echo '<td><a class="waves-effect waves-light btn" href="courseInfo.php?course_id='.$result[$i]['course_id'].'">更多資訊</a></td>';
-    
-                    echo "</tr>";
-                    echo "</form>";
-                }
+                    for ($i = 0; $i < count($result); $i++) {
+                        echo '<form action="courseInfo.php" method="post">';
+                        echo '<tr>';
+                        echo '<td>' . $result[$i]['course_name'] . "</td>";
+                        echo '<td>' . $result[$i]['department_name'] . "</td>";
+                        echo '<td> ' . $result[$i]['course_time'] . "</td>";
+                        $query = ("select count(rating), avg(rating) from rating where course_id = ?");
+                        $stmt = $db->prepare($query);
+                        $stmt->execute(array($result[$i]['course_id']));
+                        $rating = $stmt->fetchAll();
+                        if($rating[0]['count(rating)']==0){
+                            echo '<td>尚未評分</td>';
+                        }
+                        else{
+                            echo '<td> ' . number_format($rating[0]['avg(rating)'], 1, '.', '') . "</td>";
+                        }
+                        echo sprintf('<input type="hidden" name="courseId" value="%s">',$result[$i]['course_id']);
+                        echo '<td><a class="waves-effect waves-light btn" href="courseInfo.php?course_id='.$result[$i]['course_id'].'">更多資訊</a></td>';
+                        echo "</tr>";
+                        echo "</form>";
+                    }
                 ?>
             </tbody>
         </table>

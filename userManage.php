@@ -13,7 +13,6 @@ if(isset($_SESSION["hasSignedIn"]) && $_SESSION["hasSignedIn"]==true){
     echo '<script>alert("請先登入為管理者!");</script>';
     echo '<script>window.location.href="login.php";</script>';
 }
-
 ?>
 
 <?php
