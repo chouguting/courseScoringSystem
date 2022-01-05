@@ -40,11 +40,6 @@ if(isset($_SESSION["hasSignedIn"]) && $_SESSION["hasSignedIn"]==true){
     <br/>
     <br/>
 
-
-
-
-
-    <h3 class="inline"> 查詢資料</h3>
     
 
     <div class="row">
@@ -142,12 +137,7 @@ if(isset($_SESSION["hasSignedIn"]) && $_SESSION["hasSignedIn"]==true){
         }
         ?>
 
-    <div class="fixed-action-btn">
-        <a class="btn-floating btn-large red"  onclick=location.href="courseAdd.php">
-            <i class="large material-icons">add</i>
-        </a>
 
-    </div>
 </center>
 
 <?php
