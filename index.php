@@ -1,12 +1,10 @@
 
 <?php
+session_start();
 include('header.php');
 include_once "db_conn.php";
-session_start();
 header("Content-Type: text/html; charset=utf-8");
-?>
 
-<?php
 if(array_key_exists('logOut', $_POST)) {
     logOut();
 }

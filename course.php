@@ -1,8 +1,7 @@
 <?php
-include('header.php'); ?>
-<?php
-    include_once "db_conn.php";
     session_start();
+    include('header.php');
+    include_once "db_conn.php";
     $_SESSION["edit_mode"] = false;
     if(isset($_SESSION["hasSignedIn"]) && $_SESSION["hasSignedIn"]==true){
         //echo 'user_id:'.$_SESSION["user_id"].'</br>';

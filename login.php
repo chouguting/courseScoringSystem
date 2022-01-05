@@ -1,4 +1,5 @@
 <?php
+session_start();
 include('header.php');
 include_once "db_conn.php";
 header("Content-Type: text/html; charset=utf-8");
@@ -14,7 +15,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST") {
     //echo "<script>alert(strval(count($result)))</script>";
     if(count($result)==1){
         //echo "<script>alert('登入成功')</script>";
-        session_start();
+
 
         $_SESSION["hasSignedIn"] = true;
         $_SESSION["user_id"] = $result[0]['user_id'];

@@ -1,8 +1,7 @@
 <?php
+session_start();
 include('header.php');
 include_once "db_conn.php";
-session_start();
-
 
 ?>
 
@@ -76,7 +75,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
                     $searchWord=$_POST['searchWord'];
                 }
 
-                $query = ("select * from instructor
+                $query = ("select * from instructor natural join department
                             where instructor.instructor_name like ? order by department_name");
                 $stmt = $db->prepare($query);
                 $stmt->execute(array('%'.$searchWord.'%'));
@@ -86,7 +85,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
                     echo '<tr>';
                     echo '<td>' . $result[$i]['instructor_id'] . "</td>";
                     echo '<td>' . $result[$i]['instructor_name'] . "</td>";
-                    echo '<td> ' . $result[$i]['department_name'] . "</td>";
+                    echo '<td> <a href="'.$result[$i]['department_website'].'" >' . $result[$i]['department_name'] . "</a></td>";
                     
                 }
                 ?>
