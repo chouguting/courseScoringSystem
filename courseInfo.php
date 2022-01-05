@@ -45,7 +45,7 @@
                     $query = "update course set course_id = ?, course_name = ?, course_status = ?, instructor_id = ?, department_name = ?, course_location = ?, course_time = ? where course_id = ?";
                     $stmt = $db->prepare($query);
                     $stmt->execute(array($course_id, $course_name, (empty($course_status)? "off":"on"), $instructor_result[0]['instructor_id'], $department_name, $course_location, $course_time, $courseId));
-                    $edit_mode = false;
+                    echo sprintf('<script>location.href="courseInfo.php?course_id=%s"</script>',$course_id);
                 }
             }
         }
