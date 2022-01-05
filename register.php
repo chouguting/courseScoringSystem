@@ -66,11 +66,11 @@ if($_SERVER["REQUEST_METHOD"] == "POST") {
                     <label class="active" for="textarea2">用戶(顯示)名稱</label>
                 </div>
                 <div class="input-field col s12">
-                    <input id="textarea3" class="materialize-textarea"  type="text" name="password">
+                    <input id="textarea3" class="materialize-textarea"  type="password" name="password">
                     <label class="active" for="textarea3">密碼</label>
                 </div>
                 <div class="input-field col s12">
-                    <input id="textarea4" class="materialize-textarea"  type="text" name="password_check">
+                    <input id="textarea4" class="materialize-textarea"  type="password" name="password_check">
                     <label class="active" for="textarea4">再次確認密碼</label>
                 </div>
             </div>
