@@ -64,7 +64,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST") {
             </div>
             <div class="row">
                 <div class="input-field col s12">
-                    <input id="textarea1" class="materialize-textarea" type="text" name="password"/>
+                    <input id="textarea1" class="materialize-textarea" type="password" name="password"/>
                     <label for="textarea1">密碼</label>
                 </div>
             </div>
