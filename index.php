@@ -1,6 +1,20 @@
 
 <?php
-include('header.php');?>
+include('header.php');
+include_once "db_conn.php";
+session_start();
+header("Content-Type: text/html; charset=utf-8");
+?>
+
+<?php
+if(array_key_exists('logOut', $_POST)) {
+    logOut();
+}
+function logOut() {
+    $_SESSION["hasSignedIn"] = false;
+    //header("Refresh:1");
+}
+?>
 
 <header class="mdc-top-app-bar">
     <div class="mdc-top-app-bar__row">
@@ -22,8 +36,26 @@ include('header.php');?>
     <br/>
 
 <h3 class="black-text">歡迎來到課程評分系統</h3>
-<a class="waves-effect waves-light btn-small margin5" onclick=location.href="login.php">用戶登入/註冊</a>
-<a class="waves-effect waves-light btn-small margin5" onclick=location.href="course.php">進入系統</a>
+
+<form method="post">
+    <?php
+
+    if (isset($_SESSION["hasSignedIn"]) && $_SESSION["hasSignedIn"] == true) {
+        echo '<input type="submit" name="logOut"
+                                class="btn waves-effect waves-light btn-small margin5" value="登出" />';
+    }else{
+        echo '<a class="waves-effect waves-light btn-small margin5" onclick=location.href="login.php">用戶登入/註冊</a>';
+    }
+
+
+    ?>
+    <a class="waves-effect waves-light btn-small margin5" onclick=location.href="course.php">進入系統</a>
+    <?php
+    if (isset($_SESSION["hasSignedIn"]) && $_SESSION["hasSignedIn"] == true && $_SESSION["user_level"] == 's') {
+        echo '<a class="waves-effect waves-light btn-small margin5" onclick=location.href="userManage.php">管理用戶</a>';
+    }
+    ?>
+</form>
 </center>
 
 <?php

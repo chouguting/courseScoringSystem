@@ -24,7 +24,7 @@ if(isset($_SESSION["hasSignedIn"]) && $_SESSION["hasSignedIn"]==true){
     <div class="mdc-top-app-bar__row">
         <section class="mdc-top-app-bar__section mdc-top-app-bar__section--align-start">
             <button class="material-icons mdc-top-app-bar__action-item mdc-icon-button"
-                    onclick='history.back()'>arrow_back
+                    onclick=location.href="index.php">arrow_back
             </button>
             <span class="mdc-top-app-bar__title">課程列表</span>
         </section>

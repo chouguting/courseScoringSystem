@@ -4,6 +4,10 @@ include('header.php'); ?>
 include_once "db_conn.php";
 session_start();
 if(isset($_SESSION["hasSignedIn"]) && $_SESSION["hasSignedIn"]==true){
+    if($_SESSION['user_level']=='u'){
+        echo '<script>alert("請先登入為管理者!");</script>';
+        echo '<script>window.location.href="login.php";</script>';
+    }
     //echo 'user_id:'.$_SESSION["user_id"].'</br>';
     //echo 'username:'.$_SESSION["username"].'</br>';
 }else{
@@ -27,13 +31,14 @@ if($_SERVER["REQUEST_METHOD"] == "POST") {
     $stmt -> execute(array($instructor_name));
     $result = $stmt -> fetchAll();
     
-    if(empty($result)){
-        echo '<script>alert("該授課教師不存在!");</script>';
-        echo '<script>window.location.href="courseAdd.php";</script>';
-    }elseif (empty($course_id) || empty($course_name) || empty($semester) || empty($instructor_name) || empty($department_name) || empty($course_time) || empty($course_location)) {
+
+    if (empty($course_id) || empty($course_name) || empty($semester) || empty($instructor_name) || empty($department_name) || empty($course_time) || empty($course_location)) {
         //$message = "Variable 'username' is empty.";
         echo "<script>alert('警告：有空格沒填東西');</script>";
-    }else{
+    }elseif(empty($result)){
+        echo '<script>alert("該授課教師不存在!");</script>';
+        echo '<script>window.location.href="courseAdd.php";</script>';
+    } else{
         if(empty($course_status)){
             $course_status = 'off';
         }

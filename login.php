@@ -20,7 +20,8 @@ if($_SERVER["REQUEST_METHOD"] == "POST") {
         $_SESSION["user_id"] = $result[0]['user_id'];
         $_SESSION["username"] = $username;
         $_SESSION["user_level"] = $result[0]['user_level'];
-        header("Location: course.php");
+        header("Location: index.php");
+
         exit;
     }
     else{
