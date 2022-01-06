@@ -40,6 +40,9 @@
                     $stmt = $db->prepare($query);
                     try{
                         $stmt->execute(array($course_id, $course_name, (empty($course_status)? "off":"on"), $instructor_result[0]['instructor_id'], $department_name, $course_location, $course_time, $old_course_id));
+                        $query = "update rating set course_id = ? where course_id = ?";
+                        $stmt = $db->prepare($query);
+                        $stmt->execute(array($course_id, $old_course_id));
                         echo sprintf('<script>location.href="courseInfo.php?course_id=%s"</script>',$course_id);
                     }
                     catch (Exception $e){
