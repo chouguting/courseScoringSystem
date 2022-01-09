@@ -159,3 +159,7 @@ body {
 .rating2 > input:checked ~ label {
   color: #FFD700;
 }
+
+footer {
+  z-index: 10;
+}
