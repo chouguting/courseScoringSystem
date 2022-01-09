@@ -41,7 +41,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
 
 
         <div class="row">
-            <h3 class="inline"> 教師名單</h3>
+            <h3 class="inline brown-text"> 教師名單</h3>
             <form class="inline col s4 offset-s7 " method="post" >
                 <div class="row inline">
                     <div class="input-field col s7">
@@ -50,7 +50,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
                         <label for="icon_prefix2">查詢</label>
                     </div>
                     <p></p>
-                    <input class="inline btn waves-effect waves-light btn-small margin5 vertical-center " type="submit"  name="submit" value="查詢">
+                    <input class="inline btn waves-effect waves-light btn-small margin5 vertical-center red lighten-3" type="submit"  name="submit" value="查詢">
                 </div>
 
         </div>
@@ -95,7 +95,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
         <br>
         <br>
         <br>
-        <a class="waves-effect waves-light btn-small margin5" onclick=location.href="index.php">回到標題</a>
+        <a class="waves-effect waves-light btn-small margin5 red lighten-3" onclick=location.href="index.php">回到標題</a>
 
     </center>
 <?php

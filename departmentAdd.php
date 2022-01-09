@@ -73,7 +73,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST") {
                 <label for="department_website">學系網站</label>
             </div>
 
-            <input class=" btn waves-effect waves-light btn-small margin5" type="submit"  name="submit" value="新增學系">
+            <input class=" btn waves-effect waves-light btn-small margin5 red lighten-3" type="submit"  name="submit" value="新增學系">
 
         </form>
     </div>

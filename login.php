@@ -53,7 +53,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST") {
     <br/>
     <br/>
     <br/>
-    <h3 class="black-text">用戶登入</h3>
+    <h3 class="brown-text">用戶登入</h3>
     <div class="row">
         <form class="col s6 offset-s3" action="" method="post">
             <div class="row">
@@ -68,9 +68,9 @@ if($_SERVER["REQUEST_METHOD"] == "POST") {
                     <label for="textarea1">密碼</label>
                 </div>
             </div>
-            <input class=" btn waves-effect waves-light btn-small margin5" type="submit"  name="submit" value="用戶登入">
+            <input class=" btn waves-effect waves-light btn-small margin5 red lighten-3" type="submit"  name="submit" value="用戶登入">
             <!--    <a class="waves-effect waves-light btn-small margin5" onclick="location.href='mipsEmulator.html';">忘記密碼</a>-->
-            <a class="waves-effect waves-light btn-small margin5" onclick="location.href='register.php';">註冊</a>
+            <a class="waves-effect waves-light btn-small margin5 red lighten-3" onclick="location.href='register.php';">註冊</a>
         </form>
     </div>
 

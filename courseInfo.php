@@ -108,7 +108,7 @@
     <br/>
     <br/>
     <br/>
-    <h3> 課程資訊</h3>
+    <h3 class="change-color-to-gray"> 課程資訊</h3>
     <form method="post">
         <table border='1' style='width:70%' >
             <tr>
@@ -143,7 +143,7 @@
             ?>
         </table>
         <br>
-        <h3> 開課老師</h3>
+        <h3 class="change-color-to-gray"> 開課老師</h3>
         <table border='1' style='width:70%'>
             <tr>
                 <th>教師姓名</th>
@@ -166,7 +166,7 @@
 
         </table>
         <br>
-        <h3> 評價</h3>
+        <h3 class="change-color-to-gray"> 評價</h3>
         <table border='1' style='width:70%'>
             <thead>
                 <tr>

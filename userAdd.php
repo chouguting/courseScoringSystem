@@ -106,7 +106,7 @@ session_start();
 
             </div>
 
-            <input class=" btn waves-effect waves-light btn-small margin5" type="submit"  name="submit" value="新增使用者">
+            <input class=" btn waves-effect waves-light btn-small margin5 red lighten-3" type="submit"  name="submit" value="新增使用者">
 
         </form>
     </div>

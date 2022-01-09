@@ -53,7 +53,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST") {
     <br/>
     <br/>
 
-    <h3 class="black-text">用戶註冊</h3>
+    <h3 class="brown-text">用戶註冊</h3>
     <div class="row">
         <form class="col s6 offset-s3" action="" method="post">
             <div class="row">
@@ -74,7 +74,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST") {
                     <label class="active" for="textarea4">再次確認密碼</label>
                 </div>
             </div>
-            <input class=" btn waves-effect waves-light btn-small margin5" type="submit"  name="submit" value="註冊">
+            <input class=" btn waves-effect waves-light btn-small margin5 red lighten-3" type="submit"  name="submit" value="註冊">
                     
         </form>
     </div>

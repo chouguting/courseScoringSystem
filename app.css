@@ -15,9 +15,12 @@ font
 
 .mdc-top-app-bar{
   margin: 0;
-  background: cornflowerblue;
+  background: rosybrown;
 }
 
+.change-color-to-gray{
+  color: steelBlue;
+}
 
 .mdc-button{
   color: royalblue;

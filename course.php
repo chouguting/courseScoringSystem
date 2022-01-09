@@ -41,7 +41,7 @@
     
 
     <div class="row">
-        <h3 class="inline"> 查詢資料</h3>
+        <h3 class="inline brown-text"> 查詢資料</h3>
         <form class="inline col s4 offset-s7 " action="" method="post" style=''>
             <div class="row inline">
                 <div class="input-field col s7">
@@ -50,7 +50,7 @@
                     <label for="icon_prefix2">查詢</label>
                 </div>
                 <p></p>
-                <input class="inline btn waves-effect waves-light btn-small margin5 vertical-center " type="submit"  name="submit" value="查詢">
+                <input class="inline btn waves-effect waves-light btn-small margin5 vertical-center red lighten-3" type="submit"  name="submit" value="查詢">
             </div>
            
         </form>
@@ -99,7 +99,7 @@
                             echo '<td> ' . number_format($rating[0]['avg(rating)'], 1, '.', '') . "</td>";
                         }
                         echo sprintf('<input type="hidden" name="courseId" value="%s">',$result[$i]['course_id']);
-                        echo '<td><a class="waves-effect waves-light btn" href="courseInfo.php?course_id='.$result[$i]['course_id'].'">更多資訊</a></td>';
+                        echo '<td><a class="waves-effect waves-light btn red lighten-3" href="courseInfo.php?course_id='.$result[$i]['course_id'].'">更多資訊</a></td>';
                         echo "</tr>";
                         echo "</form>";
                     }
@@ -141,8 +141,8 @@
             }
         }
         ?>
-            <a class="waves-effect waves-light btn-small margin5" onclick=location.href="instructor.php">教師列表</a>
-            <a class="waves-effect waves-light btn-small margin5" onclick=location.href="department.php">學系列表</a>
+            <a class="waves-effect waves-light btn-small margin5 red lighten-3" onclick=location.href="instructor.php">教師列表</a>
+            <a class="waves-effect waves-light btn-small margin5 red lighten-3" onclick=location.href="department.php">學系列表</a>
 
 
 </center>

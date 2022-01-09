@@ -77,7 +77,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST") {
                 <label for="department_name">所屬學系</label>
             </div>
 
-            <input class=" btn waves-effect waves-light btn-small margin5" type="submit"  name="submit" value="新增教師">
+            <input class=" btn waves-effect waves-light btn-small margin5 red lighten-3" type="submit"  name="submit" value="新增教師">
 
         </form>
     </div>
