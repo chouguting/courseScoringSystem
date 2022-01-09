@@ -42,15 +42,22 @@
 
     <div class="row">
         <h3 class="inline brown-text"> 查詢資料</h3>
-        <form class="inline col s4 offset-s7 " action="" method="post" style=''>
+        <form class="inline col s5 offset-s7 " action="" method="post" style=''>
             <div class="row inline">
                 <div class="input-field col s7">
                     <i class="material-icons prefix ">search</i>
-                    <input id="textarea1" class="materialize-textarea" type="text" name="searchWord"></input>
-                    <label for="icon_prefix2">查詢</label>
+                    <input id="textarea1" placeholder="查詢課程" class="materialize-textarea" type="text" name="searchWord"></input>
+                    <label for="textarea1">查詢</label>
+
                 </div>
-                <p></p>
-                <input class="inline btn waves-effect waves-light btn-small margin5 vertical-center red lighten-3" type="submit"  name="submit" value="查詢">
+<!--                <p></p>-->
+<!--                <input class="inline btn waves-effect waves-light btn-small margin5 vertical-center red lighten-3" type="submit"  name="submit" value="查詢">-->
+                <div class="input-field col s2">
+                    <!--                    <input class="inline btn waves-effect waves-light btn-small margin5 red lighten-3 " type="submit"  name="submit" value="查詢">-->
+                    <button class="btn waves-effect waves-light red lighten-3" type="submit" name="action">查詢
+                        <i class="material-icons right">send</i>
+                    </button>
+                </div>
             </div>
            
         </form>

@@ -38,19 +38,23 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
     <br/>
     <br/>
 
-
+    
 
     <div class="row">
         <h3 class="inline brown-text"> 學系列表</h3>
-        <form class="inline col s4 offset-s7 " method="post" >
+        <form class="inline col s5 offset-s7 " method="post" >
             <div class="row inline">
-                <div class="input-field col s7">
+                <div class="input-field col s8">
                     <i class="material-icons prefix ">search</i>
-                    <input id="textarea1" class="materialize-textarea" type="text" name="searchWord"></input>
+                    <input id="textarea1" placeholder="查詢學系"  class="materialize-textarea" type="text" name="searchWord"></input>
                     <label for="icon_prefix2">查詢</label>
                 </div>
-                <p></p>
-                <input class="inline btn waves-effect waves-light btn-small margin5 vertical-center red lighten-3" type="submit"  name="submit" value="查詢">
+                <div class="input-field col s2">
+<!--                    <input class="inline btn waves-effect waves-light btn-small margin5 red lighten-3 " type="submit"  name="submit" value="查詢">-->
+                    <button class="btn waves-effect waves-light red lighten-3" type="submit" name="action">查詢
+                        <i class="material-icons right">send</i>
+                    </button>
+                </div>
             </div>
 
     </div>
@@ -86,8 +90,8 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
                 echo '<tr>';
                 echo '<td>' . $result[$i]['department_name'] . "</td>";
                 echo '<td>' . $result[$i]['instructor_count'] . "</td>";
-                echo '<td> ' . $result[$i]['department_website'] . "</td>";
-
+//                echo '<td> ' . $result[$i]['department_website'] . "</td>";
+                echo '<td> <a href="'.$result[$i]['department_website'].'" >' . $result[$i]['department_website'] . "</a></td>";
             }
             ?>
             </tbody>
