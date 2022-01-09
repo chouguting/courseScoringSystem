@@ -54,7 +54,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
                     <div class="input-field col s2">
                         <!--                    <input class="inline btn waves-effect waves-light btn-small margin5 red lighten-3 " type="submit"  name="submit" value="查詢">-->
                         <button class="btn waves-effect waves-light red lighten-3" type="submit" name="action">查詢
-                            <i class="material-icons right">send</i>
+<!--                            <i class="material-icons right">send</i>-->
                         </button>
                     </div>
                 </div>
