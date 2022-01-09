@@ -32,9 +32,8 @@ function logOut() {
 <br/>
 <br/>
 
-<br/><br/><br/><br/>
-    <br/>
-
+<br/>
+    <img src="cat2.png" style="width: 150px">
 <h3 class="brown-text">歡迎來到課程評分系統</h3>
 
 <form method="post">
