@@ -67,9 +67,10 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
             <table class="table2">
                 <thead class="thead2">
                 <tr>
-                    <th>id</th>
+                    
                     <th>教師名稱</th>
                     <th>所屬學系</th>
+                    <th>開課數</th>
                 </tr>
 
                 </thead>
@@ -81,18 +82,20 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
                     $searchWord=$_POST['searchWord'];
                 }
 
-                $query = ("select * from instructor natural join department
-                            where instructor.instructor_name like ? order by department_name");
+                $query = ("select instructor_id,instructor_name,instructor_count,department_name,department_website,(select count(*) as teach_count
+                                                                                                     from course
+                                                                                                     where instructor.instructor_id = course.instructor_id) as teach_count                                                                   
+                            from instructor natural join department
+                            where instructor.instructor_name like ? order by department_name, teach_count desc");
                 $stmt = $db->prepare($query);
                 $stmt->execute(array('%'.$searchWord.'%'));
                 $result = $stmt->fetchAll();
 
                 for ($i = 0; $i < count($result); $i++) {
                     echo '<tr>';
-                    echo '<td>' . $result[$i]['instructor_id'] . "</td>";
                     echo '<td>' . $result[$i]['instructor_name'] . "</td>";
                     echo '<td> <a href="'.$result[$i]['department_website'].'" >' . $result[$i]['department_name'] . "</a></td>";
-                    
+                    echo '<td>' . $result[$i]['teach_count'] . "</td>";
                 }
                 ?>
                 </tbody>
