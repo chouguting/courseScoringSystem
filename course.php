@@ -36,9 +36,7 @@
     <br/>
     <br/>
     <br/>
-    <br/>
-
-    
+<!--    <br/>-->
 
     <div class="row">
         <h3 class="inline brown-text"> 查詢資料</h3>
@@ -62,7 +60,7 @@
         </form>
     </div>
     
-    <br/>
+<!--    <br/>-->
         <table class="table2">
             <thead class="thead2">
                 <tr>
