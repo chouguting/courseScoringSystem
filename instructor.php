@@ -67,9 +67,9 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
             <table class="table2">
                 <thead class="thead2">
                 <tr>
-                    <th>id</th>
                     <th>教師名稱</th>
                     <th>所屬學系</th>
+                    <th>開課數</th>
                 </tr>
 
                 </thead>
@@ -88,11 +88,14 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
                 $result = $stmt->fetchAll();
 
                 for ($i = 0; $i < count($result); $i++) {
+                    $query = ("select count(*) as count from course where instructor_id = ?");
+                    $stmt = $db->prepare($query);
+                    $stmt->execute(array($result[$i]['instructor_id']));
+                    $count = $stmt->fetchAll();
                     echo '<tr>';
-                    echo '<td>' . $result[$i]['instructor_id'] . "</td>";
                     echo '<td>' . $result[$i]['instructor_name'] . "</td>";
                     echo '<td> <a href="'.$result[$i]['department_website'].'" >' . $result[$i]['department_name'] . "</a></td>";
-                    
+                    echo '<td>' . $count[0]['count'] . "</td>";
                 }
                 ?>
                 </tbody>

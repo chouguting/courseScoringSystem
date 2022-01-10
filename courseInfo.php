@@ -96,7 +96,7 @@
                     onclick="location.href='course.php';">arrow_back
             </button>
             <?php
-            echo '<span class="mdc-top-app-bar__title">'.$result[0]['course_name'].'</span>';
+                echo '<span class="mdc-top-app-bar__title">'.$result[0]['course_name'].'</span>';
             ?>
         </section>
         <section class="mdc-top-app-bar__section mdc-top-app-bar__section--align-end" role="toolbar">
